@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SimbirSoftAndroidHomeWork</string>
     <string name="my_fio">Arkhireev Denis Andreevich</string>
+    <string name="help">Press on the buttons to see homeworks</string>
+    <string name="empty_activity">Homework %1$s not yet done</string>
+    <string name="second_homework">2nd Homework</string>
 </resources>
