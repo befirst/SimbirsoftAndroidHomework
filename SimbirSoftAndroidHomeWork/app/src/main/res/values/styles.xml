@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Honey" parent="AppTheme" >
+        <item name="colorPrimary">@color/colorMain</item>
+        <item name="colorPrimaryDark">@color/colorHead</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+    </style>
 </resources>
