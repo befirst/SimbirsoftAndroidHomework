@@ -4,15 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.no_fate.simbirsoftandroidhomework.MainActivity">
+    tools:context="com.no_fate.simbirsoftandroidhomework.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
     <TextView
+        android:id="@+id/tHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/help"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tFio" />
+
+    <TextView
+        android:id="@+id/tFio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/my_fio"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/tHelp"
+        android:id="@+id/gridLayout"
+        android:columnCount="2"
+        android:rowCount="3" >
+
+        <Button
+            android:id="@+id/bTheSecondHWActivityOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:text="2nd HW" />
+
+        <Button
+            android:id="@+id/bTheThirdHWActivityOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3rd HW" />
+
+        <Button
+            android:id="@+id/bTheFourthHWActivityOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4th HW" />
+
+        <Button
+            android:id="@+id/bTheFifthHWActivityOpen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5th HW" />
+
+        <Button
+            android:id="@+id/bTheSixthHWActivityOpen"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:text="6th HW"/>
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/tAdditionalInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="AdditionalInfo"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
 </android.support.constraint.ConstraintLayout>
