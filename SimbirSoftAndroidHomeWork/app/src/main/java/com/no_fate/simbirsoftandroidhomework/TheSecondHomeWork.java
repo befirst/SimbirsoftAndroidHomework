@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
-
+    // переменные можно сделать private
     TextView tTitle;
     TextView tFiller;
     Button bCherry;
@@ -19,6 +19,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // лучше добавить пустых строчек в присваивании, чтобы было проще читать
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_second_home_work);
         tTitle = (TextView) findViewById(R.id.tTitle);
@@ -40,6 +41,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         return true;
     }
 
+    // дублирующуюся логику можно вынести в отдельный метод
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -67,6 +69,8 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         }
     }
 
+    // переменная toast лишняя
+    // строка должна быть в ресурсах
     private void showToastColorChanged(){
         Toast toast = Toast.makeText(getApplicationContext(),"Done", Toast.LENGTH_LONG);
         toast.show();
