@@ -38,7 +38,5 @@
 
     <integer name="hex_numbers_count">6</integer>
 
-    <dimen name="scrollview_height_portrait">450dp</dimen>
-    <dimen name="scrollview_height_land">240dp</dimen>
     <dimen name="imageview_height">150dp</dimen>
 </resources>
