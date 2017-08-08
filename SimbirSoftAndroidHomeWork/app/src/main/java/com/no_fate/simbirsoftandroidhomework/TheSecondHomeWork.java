@@ -1,6 +1,7 @@
 package com.no_fate.simbirsoftandroidhomework;
 
-import android.content.res.Resources;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +11,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
-
-    TextView tTitle;
-    TextView tFiller;
-    Button bCherry;
-    Button bNight;
-    Button bDefault;
+    private TextView tTitle;
+    private TextView tFiller;
+    private Button bCherry;
+    private Button bNight;
+    private Button bDefault;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_the_second_home_work);
+
         tTitle = (TextView) findViewById(R.id.tTitle);
         tFiller = (TextView) findViewById(R.id.tMainText);
         bCherry = (Button) findViewById(R.id.bCherry);
@@ -29,6 +30,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         bNight.setOnClickListener(this);
         bDefault = (Button) findViewById(R.id.bDefault);
         bDefault.setOnClickListener(this);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -40,6 +42,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         return true;
     }
 
+    // дублирующуюся логику можно вынести в отдельный метод
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -67,6 +70,13 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         }
     }
 
+    public static void Start(Context context) {
+        Intent starter = new Intent(context, TheSecondHomeWork.class);
+        context.startActivity(starter);
+    }
+
+    // переменная toast лишняя
+    // строка должна быть в ресурсах
     private void showToastColorChanged(){
         Toast toast = Toast.makeText(getApplicationContext(),"Done", Toast.LENGTH_LONG);
         toast.show();

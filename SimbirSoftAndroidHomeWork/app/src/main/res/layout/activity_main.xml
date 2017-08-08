@@ -46,17 +46,12 @@
         android:rowCount="3" >
 
         <Button
-            android:id="@+id/bTheSecondHWActivityOpen"
+            android:id="@+id/bTheSecondAndTheThirdHWActivityOpen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="0dp"
-            android:text="2nd HW" />
-
-        <Button
-            android:id="@+id/bTheThirdHWActivityOpen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3rd HW" />
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            android:text="2nd and 3rd HW" />
 
         <Button
             android:id="@+id/bTheFourthHWActivityOpen"
