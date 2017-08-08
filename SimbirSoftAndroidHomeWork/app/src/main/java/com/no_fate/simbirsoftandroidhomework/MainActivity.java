@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static Resources res;
+
     private TextView tAdditionalInfo;
     private Button[] buttonsArray;
 
@@ -17,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         tAdditionalInfo = (TextView) findViewById(R.id.tAdditionalInfo);
         buttonsArray = new Button[]{
                 (Button) findViewById(R.id.bTheSixthHWActivityOpen),
@@ -27,11 +30,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (Button i: buttonsArray) {
             i.setOnClickListener(this);
         }
+
+        res = getResources();
     }
 
     @Override
     public void onClick(View v) {
-        Resources res = getResources();
         switch (v.getId()) {
             case R.id.bTheSixthHWActivityOpen:
                 tAdditionalInfo.setText(res.getString(R.string.empty_activity, "6"));

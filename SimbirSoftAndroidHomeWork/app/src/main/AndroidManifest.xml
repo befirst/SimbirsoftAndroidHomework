@@ -18,8 +18,10 @@
         </activity>
         <activity
             android:name=".TheSecondHomeWork"
-            android:label="@string/second_homework" />
-        <activity android:name=".TheThirdHomeWork"></activity>
+            android:label="@string/second_n_third_homework" />
+        <activity
+            android:name=".TheThirdHomeWork"
+            android:label="@string/second_n_third_homework" />
     </application>
 
 </manifest>

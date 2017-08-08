@@ -11,11 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
+
+    public final static String KEY_CODE_HEXCOLOR = "hex_color";
+    private final int REQUEST_CODE_HEXCOLOR = 1;
+
     private TextView tTitle;
     private TextView tFiller;
     private Button bCherry;
     private Button bNight;
     private Button bDefault;
+    private Button bCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +29,31 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
 
         tTitle = (TextView) findViewById(R.id.tTitle);
         tFiller = (TextView) findViewById(R.id.tMainText);
+
         bCherry = (Button) findViewById(R.id.bCherry);
         bCherry.setOnClickListener(this);
         bNight = (Button) findViewById(R.id.bNight);
         bNight.setOnClickListener(this);
         bDefault = (Button) findViewById(R.id.bDefault);
         bDefault.setOnClickListener(this);
+        bCustom = (Button) findViewById(R.id.bCustom);
+        bCustom.setOnClickListener(this);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            if(data != null){
+                if(requestCode == REQUEST_CODE_HEXCOLOR){
+                    changeTextViewsBackgroundColor(
+                            data.getIntExtra(KEY_CODE_HEXCOLOR, Color.TRANSPARENT)
+                    );
+                }
+            }
         }
     }
 
@@ -42,30 +63,26 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         return true;
     }
 
-    // дублирующуюся логику можно вынести в отдельный метод
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bCherry:
-                tTitle.setBackgroundColor(getResources().getColor(R.color.cherry));
-                tTitle.setTextColor(Color.BLACK);
-                tFiller.setBackgroundColor(getResources().getColor(R.color.cherry));
-                tFiller.setTextColor(Color.BLACK);
+                changeTextViewsColors(getResources().getColor(R.color.cherry), Color.BLACK);
                 showToastColorChanged();
                 break;
             case R.id.bNight:
-                tTitle.setBackgroundColor(Color.BLACK);
-                tTitle.setTextColor(Color.WHITE);
-                tFiller.setBackgroundColor(Color.BLACK);
-                tFiller.setTextColor(Color.WHITE);
+                changeTextViewsColors(Color.BLACK, Color.WHITE);
                 showToastColorChanged();
                 break;
             case R.id.bDefault:
-                tTitle.setBackgroundColor(Color.TRANSPARENT);
-                tTitle.setTextColor(Color.BLACK);
-                tFiller.setBackgroundColor(Color.TRANSPARENT);
-                tFiller.setTextColor(Color.BLACK);
+                changeTextViewsColors(Color.TRANSPARENT, Color.BLACK);
                 showToastColorChanged();
+                break;
+            case R.id.bCustom:
+                startActivityForResult(
+                        TheThirdHomeWork.GetIntent(TheSecondHomeWork.this),
+                        REQUEST_CODE_HEXCOLOR
+                );
                 break;
         }
     }
@@ -75,10 +92,19 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         context.startActivity(starter);
     }
 
-    // переменная toast лишняя
-    // строка должна быть в ресурсах
     private void showToastColorChanged(){
-        Toast toast = Toast.makeText(getApplicationContext(),"Done", Toast.LENGTH_LONG);
-        toast.show();
+        Toast.makeText(getApplicationContext(), R.string.done, Toast.LENGTH_SHORT).show();
+    }
+
+    private void changeTextViewsColors(int backgroundColor, int textColor){
+        tTitle.setBackgroundColor(backgroundColor);
+        tTitle.setTextColor(textColor);
+        tFiller.setBackgroundColor(backgroundColor);
+        tFiller.setTextColor(textColor);
+    }
+
+    private void changeTextViewsBackgroundColor(int backgroundColor){
+        tTitle.setBackgroundColor(backgroundColor);
+        tFiller.setBackgroundColor(backgroundColor);
     }
 }
