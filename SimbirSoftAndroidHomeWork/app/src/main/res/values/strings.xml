@@ -28,6 +28,7 @@
     <string name="done">Done</string>
     <string name="failure_not_enough_symbols">You need type %1$d symbols</string>
     <string name="failure_invalid_string">String contain unacceptable symbols</string>
+    <string name="error">Error</string>
 
     <!-- Buttons names -->
     <string name="b_cherry">Cherry</string>

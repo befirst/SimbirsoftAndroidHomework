@@ -14,9 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.provider.MediaStore.Images.Media;
-
-import java.io.File;
 import java.io.InputStream;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
@@ -73,17 +70,14 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
                         );
                         break;
                     case REQUEST_CODE_GET_IMAGE:
-
                         try {
                             final Uri imageUri = data.getData();
                             final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                             final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                             ivImage.setImageBitmap(selectedImage);
                         } catch (Exception e) {
-
+                            showToastPastingImageError();
                         }
-
-
                         break;
                 }
             }
@@ -118,7 +112,6 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
                 );
                 break;
             case R.id.imageView:
-
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_PICK);
 
@@ -126,7 +119,6 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
                 intent.setDataAndType(uri, "image/*");
 
                 startActivityForResult(intent, REQUEST_CODE_GET_IMAGE);
-
                 break;
         }
     }
@@ -138,6 +130,10 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
 
     private void showToastColorChanged(){
         Toast.makeText(getApplicationContext(), R.string.done, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showToastPastingImageError(){
+        Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
     }
 
     private void changeTextViewsColors(int backgroundColor, int textColor){
