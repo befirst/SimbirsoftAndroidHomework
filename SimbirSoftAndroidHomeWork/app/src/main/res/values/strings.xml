@@ -3,7 +3,7 @@
     <string name="my_fio">Arkhireev Denis Andreevich</string>
     <string name="help">Press on the buttons to see homeworks</string>
     <string name="empty_activity">Homework %1$s not yet done</string>
-    <string name="second_homework">2nd Homework</string>
+    <string name="second_n_third_homework">2nd and 3rd Homework</string>
     <string name="lorem_ipsum">Lorem ipsum</string>
     <string name="filler">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
         accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore
@@ -25,4 +25,19 @@
         necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae.
         Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores
         alias consequatur aut perferendis doloribus asperiores repellat.</string>
+    <string name="done">Done</string>
+    <string name="failure_not_enough_symbols">You need type %1$d symbols</string>
+    <string name="failure_invalid_string">String contain unacceptable symbols</string>
+    <string name="error">Error</string>
+
+    <!-- Buttons names -->
+    <string name="b_cherry">Cherry</string>
+    <string name="b_night">Night</string>
+    <string name="b_default">Default</string>
+    <string name="b_custom">Custom</string>
+    <string name="b_confirm">Confirm</string>
+
+    <integer name="hex_numbers_count">6</integer>
+
+    <dimen name="imageview_height">150dp</dimen>
 </resources>

@@ -12,10 +12,16 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TheSecondHomeWork" android:label="@string/second_homework"></activity>
+        <activity
+            android:name=".TheSecondHomeWork"
+            android:label="@string/second_n_third_homework" />
+        <activity
+            android:name=".TheThirdHomeWork"
+            android:label="@string/second_n_third_homework" />
     </application>
 
 </manifest>

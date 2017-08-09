@@ -1,37 +1,104 @@
 package com.no_fate.simbirsoftandroidhomework;
 
-import android.content.res.Resources;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.io.InputStream;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
-    // переменные можно сделать private
-    TextView tTitle;
-    TextView tFiller;
-    Button bCherry;
-    Button bNight;
-    Button bDefault;
+
+    public final static String KEY_CODE_HEXCOLOR = "hex_color";
+    private final int REQUEST_CODE_HEXCOLOR = 1;
+    private int savedHEXColor = 0;
+
+    public final static String KEY_CODE_PICKED_IMAGE = "picked_image";
+    private final static int REQUEST_CODE_GET_IMAGE = 2;
+    private Uri savedImageUri = null;
+
+    private TextView tTitle;
+    private TextView tFiller;
+
+    private ImageView ivImage;
+
+    private Button bCherry;
+    private Button bNight;
+    private Button bDefault;
+    private Button bCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // лучше добавить пустых строчек в присваивании, чтобы было проще читать
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_the_second_home_work);
+
         tTitle = (TextView) findViewById(R.id.tTitle);
         tFiller = (TextView) findViewById(R.id.tMainText);
+
+        ivImage = (ImageView) findViewById(R.id.imageView);
+        ivImage.setOnClickListener(this);
+
         bCherry = (Button) findViewById(R.id.bCherry);
         bCherry.setOnClickListener(this);
         bNight = (Button) findViewById(R.id.bNight);
         bNight.setOnClickListener(this);
         bDefault = (Button) findViewById(R.id.bDefault);
         bDefault.setOnClickListener(this);
+        bCustom = (Button) findViewById(R.id.bCustom);
+        bCustom.setOnClickListener(this);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        if (savedInstanceState != null){
+            savedImageUri = savedInstanceState.getParcelable(KEY_CODE_PICKED_IMAGE);
+            ivImage.setImageURI(savedImageUri);
+            savedHEXColor = savedInstanceState.getInt(KEY_CODE_HEXCOLOR);
+            changeTextViewsBackgroundColor(savedHEXColor);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if(savedImageUri != null){
+            outState.putParcelable(KEY_CODE_PICKED_IMAGE, savedImageUri);
+        }
+        if(savedHEXColor != 0){
+            outState.putInt(KEY_CODE_HEXCOLOR, savedHEXColor);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            if(data != null){
+                switch (requestCode){
+                    case REQUEST_CODE_HEXCOLOR:
+                        savedHEXColor = data.getIntExtra(KEY_CODE_HEXCOLOR, Color.TRANSPARENT);
+                        changeTextViewsBackgroundColor(savedHEXColor);
+                        break;
+                    case REQUEST_CODE_GET_IMAGE:
+                        try {
+                            savedImageUri = data.getData();
+                            ivImage.setImageURI(savedImageUri);
+                        } catch (Exception e) {
+                            showToastPastingImageError();
+                        }
+                        break;
+                }
+            }
         }
     }
 
@@ -41,38 +108,61 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         return true;
     }
 
-    // дублирующуюся логику можно вынести в отдельный метод
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bCherry:
-                tTitle.setBackgroundColor(getResources().getColor(R.color.cherry));
-                tTitle.setTextColor(Color.BLACK);
-                tFiller.setBackgroundColor(getResources().getColor(R.color.cherry));
-                tFiller.setTextColor(Color.BLACK);
+                changeTextViewsColors(getResources().getColor(R.color.cherry), Color.BLACK);
                 showToastColorChanged();
                 break;
             case R.id.bNight:
-                tTitle.setBackgroundColor(Color.BLACK);
-                tTitle.setTextColor(Color.WHITE);
-                tFiller.setBackgroundColor(Color.BLACK);
-                tFiller.setTextColor(Color.WHITE);
+                changeTextViewsColors(Color.BLACK, Color.WHITE);
                 showToastColorChanged();
                 break;
             case R.id.bDefault:
-                tTitle.setBackgroundColor(Color.TRANSPARENT);
-                tTitle.setTextColor(Color.BLACK);
-                tFiller.setBackgroundColor(Color.TRANSPARENT);
-                tFiller.setTextColor(Color.BLACK);
+                changeTextViewsColors(Color.TRANSPARENT, Color.BLACK);
                 showToastColorChanged();
+                break;
+            case R.id.bCustom:
+                startActivityForResult(
+                        TheThirdHomeWork.GetIntent(TheSecondHomeWork.this),
+                        REQUEST_CODE_HEXCOLOR
+                );
+                break;
+            case R.id.imageView:
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
+
+                Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath());
+                intent.setDataAndType(uri, "image/*");
+
+                startActivityForResult(intent, REQUEST_CODE_GET_IMAGE);
                 break;
         }
     }
 
-    // переменная toast лишняя
-    // строка должна быть в ресурсах
+    public static void Start(Context context) {
+        Intent starter = new Intent(context, TheSecondHomeWork.class);
+        context.startActivity(starter);
+    }
+
     private void showToastColorChanged(){
-        Toast toast = Toast.makeText(getApplicationContext(),"Done", Toast.LENGTH_LONG);
-        toast.show();
+        Toast.makeText(getApplicationContext(), R.string.done, Toast.LENGTH_SHORT).show();
+    }
+
+    private void showToastPastingImageError(){
+        Toast.makeText(getApplicationContext(), R.string.error, Toast.LENGTH_SHORT).show();
+    }
+
+    private void changeTextViewsColors(int backgroundColor, int textColor){
+        tTitle.setBackgroundColor(backgroundColor);
+        tTitle.setTextColor(textColor);
+        tFiller.setBackgroundColor(backgroundColor);
+        tFiller.setTextColor(textColor);
+    }
+
+    private void changeTextViewsBackgroundColor(int backgroundColor){
+        tTitle.setBackgroundColor(backgroundColor);
+        tFiller.setBackgroundColor(backgroundColor);
     }
 }
