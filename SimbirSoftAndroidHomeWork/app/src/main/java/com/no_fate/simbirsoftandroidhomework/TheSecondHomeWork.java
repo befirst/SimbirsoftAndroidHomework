@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +21,11 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
 
     public final static String KEY_CODE_HEXCOLOR = "hex_color";
     private final int REQUEST_CODE_HEXCOLOR = 1;
+    private int savedHEXColor = 0;
 
     public final static String KEY_CODE_PICKED_IMAGE = "picked_image";
     private final static int REQUEST_CODE_GET_IMAGE = 2;
+    private Uri savedImageUri = null;
 
     private TextView tTitle;
     private TextView tFiller;
@@ -37,6 +40,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_the_second_home_work);
 
         tTitle = (TextView) findViewById(R.id.tTitle);
@@ -57,6 +61,23 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        if (savedInstanceState != null){
+            savedImageUri = savedInstanceState.getParcelable(KEY_CODE_PICKED_IMAGE);
+            ivImage.setImageURI(savedImageUri);
+            savedHEXColor = savedInstanceState.getInt(KEY_CODE_HEXCOLOR);
+            changeTextViewsBackgroundColor(savedHEXColor);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        if(savedImageUri != null){
+            outState.putParcelable(KEY_CODE_PICKED_IMAGE, savedImageUri);
+        }
+        if(savedHEXColor != 0){
+            outState.putInt(KEY_CODE_HEXCOLOR, savedHEXColor);
+        }
     }
 
     @Override
@@ -65,16 +86,13 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
             if(data != null){
                 switch (requestCode){
                     case REQUEST_CODE_HEXCOLOR:
-                        changeTextViewsBackgroundColor(
-                                data.getIntExtra(KEY_CODE_HEXCOLOR, Color.TRANSPARENT)
-                        );
+                        savedHEXColor = data.getIntExtra(KEY_CODE_HEXCOLOR, Color.TRANSPARENT);
+                        changeTextViewsBackgroundColor(savedHEXColor);
                         break;
                     case REQUEST_CODE_GET_IMAGE:
                         try {
-                            final Uri imageUri = data.getData();
-                            final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                            ivImage.setImageBitmap(selectedImage);
+                            savedImageUri = data.getData();
+                            ivImage.setImageURI(savedImageUri);
                         } catch (Exception e) {
                             showToastPastingImageError();
                         }
