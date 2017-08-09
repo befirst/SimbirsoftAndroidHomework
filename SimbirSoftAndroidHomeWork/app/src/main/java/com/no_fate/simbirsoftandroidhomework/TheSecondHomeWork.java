@@ -2,21 +2,36 @@ package com.no_fate.simbirsoftandroidhomework;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.provider.MediaStore.Images.Media;
+
+import java.io.File;
+import java.io.InputStream;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
 
     public final static String KEY_CODE_HEXCOLOR = "hex_color";
     private final int REQUEST_CODE_HEXCOLOR = 1;
 
+    public final static String KEY_CODE_PICKED_IMAGE = "picked_image";
+    private final static int REQUEST_CODE_GET_IMAGE = 2;
+
     private TextView tTitle;
     private TextView tFiller;
+
+    private ImageView ivImage;
+
     private Button bCherry;
     private Button bNight;
     private Button bDefault;
@@ -29,6 +44,9 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
 
         tTitle = (TextView) findViewById(R.id.tTitle);
         tFiller = (TextView) findViewById(R.id.tMainText);
+
+        ivImage = (ImageView) findViewById(R.id.imageView);
+        ivImage.setOnClickListener(this);
 
         bCherry = (Button) findViewById(R.id.bCherry);
         bCherry.setOnClickListener(this);
@@ -48,10 +66,25 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
             if(data != null){
-                if(requestCode == REQUEST_CODE_HEXCOLOR){
-                    changeTextViewsBackgroundColor(
-                            data.getIntExtra(KEY_CODE_HEXCOLOR, Color.TRANSPARENT)
-                    );
+                switch (requestCode){
+                    case REQUEST_CODE_HEXCOLOR:
+                        changeTextViewsBackgroundColor(
+                                data.getIntExtra(KEY_CODE_HEXCOLOR, Color.TRANSPARENT)
+                        );
+                        break;
+                    case REQUEST_CODE_GET_IMAGE:
+
+                        try {
+                            final Uri imageUri = data.getData();
+                            final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                            ivImage.setImageBitmap(selectedImage);
+                        } catch (Exception e) {
+
+                        }
+
+
+                        break;
                 }
             }
         }
@@ -83,6 +116,17 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
                         TheThirdHomeWork.GetIntent(TheSecondHomeWork.this),
                         REQUEST_CODE_HEXCOLOR
                 );
+                break;
+            case R.id.imageView:
+
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
+
+                Uri uri = Uri.parse(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath());
+                intent.setDataAndType(uri, "image/*");
+
+                startActivityForResult(intent, REQUEST_CODE_GET_IMAGE);
+
                 break;
         }
     }
