@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class TheThirdHomeWork extends AppCompatActivity implements View.OnClickListener{
 
     private TextView tvHEXColor;
+    // можно сделать локальной переменной
     private Button bConfirm;
 
     @Override
@@ -39,22 +40,29 @@ public class TheThirdHomeWork extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         int hexColor;
+        // почему досуп через MainActivity и через статическую переменную?
+        // здесь hex_numbers_count лучше не выносить в ресурсы
         if(tvHEXColor.getText().length() < MainActivity.res.getInteger(R.integer.hex_numbers_count)){
             showToastNotEnoughSymbols();
             return;
         }
+
+        // лучше вынести в отдельный метод, а не делать в onClick
         try{
             hexColor = Color.parseColor("#" + tvHEXColor.getText());
         } catch(Exception e){
             showToastColorNotExist();
             return;
         }
+
+        // тоже в отдельный метод
         Intent intent = new Intent();
         intent.putExtra(TheSecondHomeWork.KEY_CODE_HEXCOLOR, hexColor);
         setResult(RESULT_OK, intent);
         finish();
     }
 
+    // статические методы наверх класса
     public static Intent GetIntent(Context context) {
         return new Intent(context, TheThirdHomeWork.class);
     }

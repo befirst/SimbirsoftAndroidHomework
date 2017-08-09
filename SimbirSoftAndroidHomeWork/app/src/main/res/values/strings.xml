@@ -37,6 +37,7 @@
     <string name="b_custom">Custom</string>
     <string name="b_confirm">Confirm</string>
 
+    <!-- в файле строк только строки. константы и размерности в другие файлы -->
     <integer name="hex_numbers_count">6</integer>
 
     <dimen name="imageview_height">150dp</dimen>

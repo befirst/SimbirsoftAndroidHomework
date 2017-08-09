@@ -18,13 +18,15 @@ import android.widget.Toast;
 import java.io.InputStream;
 
 public class TheSecondHomeWork extends AppCompatActivity implements View.OnClickListener{
-
+    // статические переменные лучше выделить визуально отдельно:
     public final static String KEY_CODE_HEXCOLOR = "hex_color";
-    private final int REQUEST_CODE_HEXCOLOR = 1;
-    private int savedHEXColor = 0;
-
     public final static String KEY_CODE_PICKED_IMAGE = "picked_image";
+
     private final static int REQUEST_CODE_GET_IMAGE = 2;
+    private final int REQUEST_CODE_HEXCOLOR = 1;
+
+    // 0 для int и null для Uri - не обязательно
+    private int savedHEXColor = 0;
     private Uri savedImageUri = null;
 
     private TextView tTitle;
@@ -32,6 +34,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
 
     private ImageView ivImage;
 
+    // можно сделать локальными переменными
     private Button bCherry;
     private Button bNight;
     private Button bDefault;
@@ -112,6 +115,7 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bCherry:
+                // метод getColor deprecated
                 changeTextViewsColors(getResources().getColor(R.color.cherry), Color.BLACK);
                 showToastColorChanged();
                 break;
@@ -141,6 +145,8 @@ public class TheSecondHomeWork extends AppCompatActivity implements View.OnClick
         }
     }
 
+    // статический метод вынести наверх
+    // метод должен начинать со строчной буквы
     public static void Start(Context context) {
         Intent starter = new Intent(context, TheSecondHomeWork.class);
         context.startActivity(starter);
