@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tAdditionalInfo.setText(res.getString(R.string.empty_activity, "5"));
                 break;
             case R.id.bTheFourthHWActivityOpen:
-                tAdditionalInfo.setText(res.getString(R.string.empty_activity, "4"));
+                TheFourthHomeWork.start(MainActivity.this);
                 break;
             case R.id.bTheSecondAndTheThirdHWActivityOpen:
                 TheSecondHomeWork.start(MainActivity.this);

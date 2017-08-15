@@ -4,6 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.no_fate.simbirsoftandroidhomework.TheFourthHomeWork">
+    tools:context="com.no_fate.simbirsoftandroidhomework.TheFourthHomeWork" >
+
+    <!-- The Material Design specification recommends that app bars have an elevation of 4 dp. -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBarCustom"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

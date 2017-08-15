@@ -16,13 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".TheSecondHomeWork"
-            android:label="@string/second_n_third_homework" />
+            android:label="@string/second_n_third_homework"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".TheThirdHomeWork"
-            android:label="@string/second_n_third_homework" />
-        <activity android:name=".TheFourthHomeWork"></activity>
+            android:label="@string/second_n_third_homework"
+            android:parentActivityName=".TheSecondHomeWork"/>
+        <activity
+            android:name=".TheFourthHomeWork"
+            android:label="@string/fourth_homework"
+            android:parentActivityName=".MainActivity"/>
+
     </application>
 
 </manifest>
