@@ -20,15 +20,20 @@
         <activity
             android:name=".TheSecondHomeWork"
             android:label="@string/second_n_third_homework"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity">
+        </activity>
+
         <activity
             android:name=".TheThirdHomeWork"
             android:label="@string/second_n_third_homework"
-            android:parentActivityName=".TheSecondHomeWork"/>
+            android:parentActivityName=".TheSecondHomeWork">
+        </activity>
+
         <activity
             android:name=".TheFourthHomeWork"
             android:label="@string/fourth_homework"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity">
+        </activity>
 
     </application>
 

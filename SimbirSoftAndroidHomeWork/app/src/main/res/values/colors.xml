@@ -8,8 +8,16 @@
     <color name="colorHead">#A68600</color>
     <color name="colorControls">#BFA430</color>
     <color name="colorBackground">#fdf6d7</color>
+    
     <color name="cherry">#50000d</color>
+    
     <color name="colorMintMain">#27c89b</color>
     <color name="colorMintHead">#21ab85</color>
+    
+    <color name="secondWhite">#f2f2f2</color>
+    <color name="blackThree87">#de000000</color>
+    <color name="black212121">#212121</color>
+    <color name="warmGrey">#747474</color>
+    <color name="coral">#fc5d42</color>
 
 </resources>
