@@ -13,8 +13,17 @@ import android.widget.Toast;
 
 public class TheThirdHomeWork extends AppCompatActivity implements View.OnClickListener{
 
+    private final static int HEX_NUMBERS_COUNT = 6;
+    private final static int CODE_ERROR = -1;
+    private final static int CODE_GOOD = 1;
+
     private TextView tvHEXColor;
     private Button bConfirm;
+    private int hexColor;
+
+    public static Intent GetIntent(Context context) {
+        return new Intent(context, TheThirdHomeWork.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,33 +47,49 @@ public class TheThirdHomeWork extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        int hexColor;
-        if(tvHEXColor.getText().length() < MainActivity.res.getInteger(R.integer.hex_numbers_count)){
+
+        // почему досуп через MainActivity и через статическую переменную? //
+        // здесь hex_numbers_count лучше не выносить в ресурсы //
+        // выделил потому что подумал что вызов getResources() это труднозатратно
+//        if(tvHEXColor.getText().length() < getResources().getInteger(R.integer.hex_numbers_count)){
+//            showToastNotEnoughSymbols();
+//            return;
+//        }
+
+        if(tvHEXColor.getText().length() < HEX_NUMBERS_COUNT){
             showToastNotEnoughSymbols();
             return;
         }
+
+        saveColorInExtra(tryParseColor());
+
+        finish();
+    }
+
+    private int tryParseColor(){
         try{
             hexColor = Color.parseColor("#" + tvHEXColor.getText());
         } catch(Exception e){
             showToastColorNotExist();
-            return;
+            return CODE_ERROR;
         }
-        Intent intent = new Intent();
-        intent.putExtra(TheSecondHomeWork.KEY_CODE_HEXCOLOR, hexColor);
-        setResult(RESULT_OK, intent);
-        finish();
+        return CODE_GOOD;
     }
 
-    public static Intent GetIntent(Context context) {
-        return new Intent(context, TheThirdHomeWork.class);
+    private void saveColorInExtra(int previousOperationCode){
+        if(previousOperationCode == CODE_GOOD){
+            Intent intent = new Intent();
+            intent.putExtra(TheSecondHomeWork.KEY_CODE_HEXCOLOR, hexColor);
+            setResult(RESULT_OK, intent);
+        }
     }
 
     private void showToastNotEnoughSymbols(){
         Toast.makeText(
                 getApplicationContext(),
-                MainActivity.res.getString(
+                getResources().getString(
                         R.string.failure_not_enough_symbols,
-                        MainActivity.res.getInteger(R.integer.hex_numbers_count)
+                        HEX_NUMBERS_COUNT
                 ),
                 Toast.LENGTH_SHORT
         ).show();

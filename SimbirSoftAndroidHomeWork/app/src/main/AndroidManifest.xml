@@ -22,6 +22,7 @@
         <activity
             android:name=".TheThirdHomeWork"
             android:label="@string/second_n_third_homework" />
+        <activity android:name=".TheFourthHomeWork"></activity>
     </application>
 
 </manifest>

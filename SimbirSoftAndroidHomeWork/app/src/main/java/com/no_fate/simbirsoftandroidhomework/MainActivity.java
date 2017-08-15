@@ -1,6 +1,5 @@
 package com.no_fate.simbirsoftandroidhomework;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tAdditionalInfo.setText(res.getString(R.string.empty_activity, "4"));
                 break;
             case R.id.bTheSecondAndTheThirdHWActivityOpen:
-                TheSecondHomeWork.Start(MainActivity.this);
+                TheSecondHomeWork.start(MainActivity.this);
                 break;
         }
     }

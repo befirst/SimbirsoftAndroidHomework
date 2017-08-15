@@ -37,7 +37,4 @@
     <string name="b_custom">Custom</string>
     <string name="b_confirm">Confirm</string>
 
-    <integer name="hex_numbers_count">6</integer>
-
-    <dimen name="imageview_height">150dp</dimen>
 </resources>

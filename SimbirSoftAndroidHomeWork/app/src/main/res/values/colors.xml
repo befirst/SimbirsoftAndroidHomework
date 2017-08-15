@@ -9,5 +9,7 @@
     <color name="colorControls">#BFA430</color>
     <color name="colorBackground">#fdf6d7</color>
     <color name="cherry">#50000d</color>
+    <color name="colorMintMain">#27c89b</color>
+    <color name="colorMintHead">#21ab85</color>
 
 </resources>
