@@ -38,4 +38,18 @@
     <string name="b_custom">Custom</string>
     <string name="b_confirm">Confirm</string>
 
+    <string name="CNCInsurance">КАСКО</string>
+    <string name="CMTPL">ОСАГО</string>
+    <string name="PropertyInsurance">Имущество</string>
+    <string name="HealthInsurance">Медицинское страхование</string>
+    <string name="from_date">с</string>
+    <string name="to_date">по</string>
+
+    <string name="remains_many">Осталось</string>
+    <string name="remains_one">Остался</string>
+    <string name="days_many">дней</string>
+    <string name="days_many_2">дня</string>
+    <string name="day">день</string>
+    <string name="to_date_2">до</string>
+
 </resources>

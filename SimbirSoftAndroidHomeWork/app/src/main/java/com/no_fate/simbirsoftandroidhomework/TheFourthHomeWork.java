@@ -35,7 +35,7 @@ public class TheFourthHomeWork extends AppCompatActivity {
         RecyclerView rvPolicy = (RecyclerView)findViewById(R.id.rvPolicy);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvPolicy.setLayoutManager(linearLayoutManager);
-        PolicyAdapter policyAdapter = new PolicyAdapter(policies);
+        PolicyAdapter policyAdapter = new PolicyAdapter(this, policies);
         rvPolicy.setAdapter(policyAdapter);
 
         Toolbar customToolBar = (Toolbar) findViewById(R.id.toolBarCustom);

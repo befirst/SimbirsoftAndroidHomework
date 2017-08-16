@@ -1,7 +1,16 @@
 package com.no_fate.simbirsoftandroidhomework;
 
+import android.graphics.Color;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -13,19 +22,29 @@ enum PolicyType{
 }
 
 public class InsurancePolicy {
+    private final static int MILLISECONDS_PER_DAY = 86400000;
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
     private PolicyType type;
     private String policyNumber;
     private PolicyObject policyObject;
     private Calendar beginningDate;
     private Calendar deadline;
 
-    public InsurancePolicy(PolicyType type, String policyNumber, PolicyObject policyObject, GregorianCalendar beginningDate, GregorianCalendar deadline) {
+    private double distanceBetweenBeginningAndDeadlineInDays;
+
+    public InsurancePolicy(PolicyType type, String policyNumber, PolicyObject policyObject,
+                           GregorianCalendar beginningDate, GregorianCalendar deadline) {
         this.type = type;
         this.policyNumber = policyNumber;
         this.policyObject = policyObject;
         this.beginningDate = beginningDate;
         this.deadline = deadline;
+
+        long distanceBetweenBeginningAndDeadline =
+                deadline.getTimeInMillis() - beginningDate.getTimeInMillis();
+        distanceBetweenBeginningAndDeadlineInDays =
+                distanceBetweenBeginningAndDeadline / MILLISECONDS_PER_DAY;
     }
 
     public PolicyType getType() {
@@ -40,12 +59,14 @@ public class InsurancePolicy {
         return policyObject.getFormattedInfo();
     }
 
-    public Calendar getBeginningDate() {
-        return beginningDate;
+    public int getProgress(Calendar nowTime){
+        double result = (getDistanceFromNowInDays(nowTime)/distanceBetweenBeginningAndDeadlineInDays) * 100;
+        return (int)result;
     }
 
-    public Calendar getDeadline() {
-        return deadline;
+    public int getDistanceInDays(Calendar nowTime){
+        double result = distanceBetweenBeginningAndDeadlineInDays -  getDistanceFromNowInDays(nowTime);
+        return (int)result;
     }
 
     public String getFormattedBeginningDate() {
@@ -54,5 +75,11 @@ public class InsurancePolicy {
 
     public String getFormattedDeadline() {
         return dateFormat.format(deadline.getTime());
+    }
+
+    private int getDistanceFromNowInDays(Calendar nowTime){
+        long distanceFromNow = nowTime.getTimeInMillis() - beginningDate.getTimeInMillis();
+        double distanceFromNowInDays = distanceFromNow / MILLISECONDS_PER_DAY;
+        return (int)distanceFromNowInDays;
     }
 }
