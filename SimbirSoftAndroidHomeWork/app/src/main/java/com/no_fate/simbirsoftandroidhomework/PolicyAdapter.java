@@ -67,6 +67,8 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
 
     @Override
     public void onBindViewHolder(PolicyViewHolder holder, int position) {
+        final int BUY_NEW_ACCESS = 30;
+
         InsurancePolicy policy = policies.get(position);
 
         if(getIconResourceId(policy) != CODE_ERROR){
@@ -88,6 +90,13 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
                         )
                 )
         );
+
+
+        if(daysToTheEnd < BUY_NEW_ACCESS){
+            holder.ivCart.setVisibility(View.VISIBLE);
+        } else{
+            holder.ivCart.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -167,10 +176,12 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
         String days = String.valueOf(daysToTheEnd);
         String deadline = policy.getFormattedDeadline();
         String result;
-        if(daysToTheEnd % 10 > 4){
+        if((daysToTheEnd >= 10) && (daysToTheEnd <= 19)){
             result = parentContext.getResources().getString(R.string.remains_many) + " " +
                     days + " " + parentContext.getResources().getString(R.string.days_many) + " ";
-
+        } else if(daysToTheEnd % 10 > 4){
+            result = parentContext.getResources().getString(R.string.remains_many) + " " +
+                    days + " " + parentContext.getResources().getString(R.string.days_many) + " ";
         } else if(daysToTheEnd % 10 > 1){
             result = parentContext.getResources().getString(R.string.remains_many) + " " +
                     days + " " + parentContext.getResources().getString(R.string.days_many_2) + " ";

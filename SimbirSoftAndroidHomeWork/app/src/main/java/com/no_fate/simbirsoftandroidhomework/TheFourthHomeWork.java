@@ -52,21 +52,70 @@ public class TheFourthHomeWork extends AppCompatActivity {
                 "21321354646513EFSGSEGSF",
                 new Automobile("Toyota", "Corolla"),
                 new GregorianCalendar(2013, 1, 28),
-                new GregorianCalendar(2017,10,20)
+                new GregorianCalendar(2017, 9, 11)
         ));
         policies.add(new InsurancePolicy(
                 PolicyType.HealthInsurance,
                 "6213564SFG21DFG5DF2D3FG",
                 new FIO("Semenov", "Semen", "Semenovich"),
                 new GregorianCalendar(2013, 1, 28),
-                new GregorianCalendar(2017,10,20)
+                new GregorianCalendar(2017, 9, 16)
         ));
         policies.add(new InsurancePolicy(
                 PolicyType.PropertyInsurance,
                 "SFG1F32GD45FGD31",
                 new HomeAddress("Russia", "Telmana", "22", "13"),
+                new GregorianCalendar(2016, 12, 28),
+                new GregorianCalendar(2017, 8, 1)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.PropertyInsurance,
+                "38753HG3583H9G83GN",
+                new HomeAddress("Russia", "Telmana", "3", "46"),
                 new GregorianCalendar(2013, 1, 28),
-                new GregorianCalendar(2017,10,20)
+                new GregorianCalendar(2017, 9, 20)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.CNCInsurance,
+                "MGERGNERG8E9RG8ERNGSFGL",
+                new Automobile("UAZ", "Patriot"),
+                new GregorianCalendar(2013, 1, 28),
+                new GregorianCalendar(2017, 9, 20)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.HealthInsurance,
+                "KDJHKSDFJG90485Y04TIHN",
+                new FIO("Petrov", "Petr", "Petrovich"),
+                new GregorianCalendar(2017, 6, 11),
+                new GregorianCalendar(2017, 7, 25)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.CNCInsurance,
+                "DFGSDHJNGJHF0590R4569874FGMNH95",
+                new Automobile("Mazda", "RX-8"),
+                new GregorianCalendar(2017, 0, 1),
+                new GregorianCalendar(2018, 0, 1)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.HealthInsurance,
+                "B475G9R05YMHNFKGN0",
+                new FIO("Vasilyev", "Vasiliy", "Vasilyevich"),
+                new GregorianCalendar(2000, 5, 14),
+                new GregorianCalendar(2017, 7, 22)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.PropertyInsurance,
+                "JSFG9094NR90GNFGN",
+                new HomeAddress("Moskva", "Delovoy centr", "1000", "77"),
+                new GregorianCalendar(2013, 1, 28),
+                new GregorianCalendar(2017, 7, 30)
+        ));
+        policies.add(new InsurancePolicy(
+                PolicyType.CNCInsurance,
+                "JH049N49NFGN9JJ",
+                new Automobile("Tesla", "Model S"),
+                new GregorianCalendar(2013, 1, 28),
+                new GregorianCalendar(2017, 7, 29)
         ));
     }
 
