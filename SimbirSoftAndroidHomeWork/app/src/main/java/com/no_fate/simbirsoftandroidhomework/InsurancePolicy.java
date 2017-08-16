@@ -41,10 +41,7 @@ public class InsurancePolicy {
         this.beginningDate = beginningDate;
         this.deadline = deadline;
 
-        long distanceBetweenBeginningAndDeadline =
-                deadline.getTimeInMillis() - beginningDate.getTimeInMillis();
-        distanceBetweenBeginningAndDeadlineInDays =
-                distanceBetweenBeginningAndDeadline / MILLISECONDS_PER_DAY;
+        updateDistance();
     }
 
     public PolicyType getType() {
@@ -77,9 +74,23 @@ public class InsurancePolicy {
         return dateFormat.format(deadline.getTime());
     }
 
+    public void buyPolicy(Calendar nowTime){
+        final int ADDED_DAYS = 30;
+        beginningDate = nowTime;
+        deadline.setTimeInMillis((nowTime.getTimeInMillis() + ((long)ADDED_DAYS * (long)MILLISECONDS_PER_DAY)));
+        updateDistance();
+    }
+
     private int getDistanceFromNowInDays(Calendar nowTime){
         long distanceFromNow = nowTime.getTimeInMillis() - beginningDate.getTimeInMillis();
         double distanceFromNowInDays = distanceFromNow / MILLISECONDS_PER_DAY;
         return (int)distanceFromNowInDays;
+    }
+
+    private void updateDistance(){
+        long distanceBetweenBeginningAndDeadline =
+                deadline.getTimeInMillis() - beginningDate.getTimeInMillis();
+        distanceBetweenBeginningAndDeadlineInDays =
+                distanceBetweenBeginningAndDeadline / MILLISECONDS_PER_DAY;
     }
 }

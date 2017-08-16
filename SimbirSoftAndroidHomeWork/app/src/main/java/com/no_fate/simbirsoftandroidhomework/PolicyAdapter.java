@@ -66,10 +66,10 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
     }
 
     @Override
-    public void onBindViewHolder(PolicyViewHolder holder, int position) {
+    public void onBindViewHolder(final PolicyViewHolder holder, final int position) {
         final int BUY_NEW_ACCESS = 30;
 
-        InsurancePolicy policy = policies.get(position);
+        final InsurancePolicy policy = policies.get(position);
 
         if(getIconResourceId(policy) != CODE_ERROR){
             holder.ivIcon.setImageResource(getIconResourceId(policy));
@@ -91,9 +91,15 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
                 )
         );
 
-
         if(daysToTheEnd < BUY_NEW_ACCESS){
             holder.ivCart.setVisibility(View.VISIBLE);
+            holder.ivCart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    policy.buyPolicy(nowTime);
+                    bindViewHolder(holder, position);
+                }
+            });
         } else{
             holder.ivCart.setVisibility(View.INVISIBLE);
         }
