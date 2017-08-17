@@ -41,20 +41,20 @@ class Automobile extends PolicyObject{
 }
 
 class HomeAddress extends PolicyObject{
-    private String country;
+    private String street;
     private String city;
     private String house;
     private String room;
 
-    public HomeAddress(String country, String city, String house, String room) {
-        this.country = country;
+    public HomeAddress(String city, String street, String house, String room) {
         this.city = city;
+        this.street = street;
         this.house = house;
         this.room = room;
     }
 
     @Override
     String getFormattedInfo() {
-        return country + " " + city + " " + house + " " + room;
+        return city + ", " + street + ", " + house + ", " + room;
     }
 }

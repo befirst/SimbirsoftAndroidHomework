@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -19,8 +21,14 @@ public class TheFourthHomeWork extends AppCompatActivity {
 
     public static void start(Context context) {
         Intent starter = new Intent(context, TheFourthHomeWork.class);
-        //starter.putExtra();
         context.startActivity(starter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_custom, menu);
+        return true;
     }
 
     @Override
@@ -41,6 +49,7 @@ public class TheFourthHomeWork extends AppCompatActivity {
         Toolbar customToolBar = (Toolbar) findViewById(R.id.toolBarCustom);
         setSupportActionBar(customToolBar);
         if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -64,14 +73,14 @@ public class TheFourthHomeWork extends AppCompatActivity {
         policies.add(new InsurancePolicy(
                 PolicyType.PropertyInsurance,
                 "SFG1F32GD45FGD31",
-                new HomeAddress("Russia", "Telmana", "22", "13"),
+                new HomeAddress("Ulyanovsk city", "Telmana street", "22", "13"),
                 new GregorianCalendar(2016, 12, 28),
                 new GregorianCalendar(2017, 8, 1)
         ));
         policies.add(new InsurancePolicy(
                 PolicyType.PropertyInsurance,
                 "38753HG3583H9G83GN",
-                new HomeAddress("Russia", "Telmana", "3", "46"),
+                new HomeAddress("Ulyanovsk city", "Telmana street", "3", "46"),
                 new GregorianCalendar(2013, 1, 28),
                 new GregorianCalendar(2017, 9, 20)
         ));
@@ -106,7 +115,7 @@ public class TheFourthHomeWork extends AppCompatActivity {
         policies.add(new InsurancePolicy(
                 PolicyType.PropertyInsurance,
                 "JSFG9094NR90GNFGN",
-                new HomeAddress("Moskva", "Delovoy centr", "1000", "77"),
+                new HomeAddress("Moskva city", "Delovoy centr street", "1000", "77"),
                 new GregorianCalendar(2013, 1, 28),
                 new GregorianCalendar(2017, 7, 30)
         ));
