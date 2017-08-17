@@ -4,6 +4,7 @@
     <string name="help">Press on the buttons to see homeworks</string>
     <string name="empty_activity">Homework %1$s not yet done</string>
     <string name="second_n_third_homework">2nd and 3rd Homework</string>
+    <string name="fourth_homework">Мои полисы</string>
     <string name="lorem_ipsum">Lorem ipsum</string>
     <string name="filler">Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
         accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore
@@ -36,9 +37,27 @@
     <string name="b_default">Default</string>
     <string name="b_custom">Custom</string>
     <string name="b_confirm">Confirm</string>
+    
+    <string name="city">г.</string>
+    <string name="street">ул.</string>
+    <string name="house">д.</string>
+    <string name="room">кв.</string>
 
-    <!-- в файле строк только строки. константы и размерности в другие файлы -->
-    <integer name="hex_numbers_count">6</integer>
+    <string name="CNCInsurance">КАСКО</string>
+    <string name="CMTPL">ОСАГО</string>
+    <string name="PropertyInsurance">Имущество</string>
+    <string name="HealthInsurance">Медицинское страхование</string>
+    <string name="from_date">с</string>
+    <string name="to_date">по</string>
 
-    <dimen name="imageview_height">150dp</dimen>
+    <string name="remains_many">Осталось</string>
+    <string name="remains_one">Остался</string>
+    <string name="days_many">дней</string>
+    <string name="days_many_2">дня</string>
+    <string name="day">день</string>
+    <string name="to_date_2">до</string>
+
+    <string name="titleSearch">Поиск</string>
+    <string name="titleNotification">Уведомление</string>
+
 </resources>
