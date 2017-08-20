@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tAdditionalInfo.setText(res.getString(R.string.empty_activity, "6"));
                 break;
             case R.id.bTheFifthHWActivityOpen:
-                tAdditionalInfo.setText(res.getString(R.string.empty_activity, "5"));
+                TheFifthHomeWork.start(MainActivity.this);
                 break;
             case R.id.bTheFourthHWActivityOpen:
                 TheFourthHomeWork.start(MainActivity.this);
