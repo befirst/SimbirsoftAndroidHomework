@@ -2,7 +2,6 @@ package com.no_fate.simbirsoftandroidhomework;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -19,10 +18,6 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
-/**
- * Created by Denis on 16.08.2017.
- */
 
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyViewHolder> {
     private final static int CODE_ERROR = -1;
@@ -86,20 +81,18 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
                 ColorStateList.valueOf(
                         ContextCompat.getColor(
                                 parentContext,
-                                getProgressColorId(policy, daysToTheEnd)
+                                getProgressColorId(daysToTheEnd)
                         )
                 )
         );
 
         if(daysToTheEnd < BUY_NEW_ACCESS){
             holder.ivCart.setVisibility(View.VISIBLE);
-            holder.ivCart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            holder.ivCart.setOnClickListener(listener ->  {
                     policy.buyPolicy(nowTime);
-                    bindViewHolder(holder, position);
+                    notifyItemChanged(position);
                 }
-            });
+            );
         } else{
             holder.ivCart.setVisibility(View.INVISIBLE);
         }
@@ -203,7 +196,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
         return result;
     }
 
-    private int getProgressColorId(InsurancePolicy policy, int daysToTheEnd){
+    private int getProgressColorId(int daysToTheEnd){
         final int FIRST_LIMIT = 7;
         final int SECOND_LIMIT = 30;
         final int BAD_COLOR_ID = R.color.coral_two;

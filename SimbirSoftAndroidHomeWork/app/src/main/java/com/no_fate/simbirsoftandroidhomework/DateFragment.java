@@ -1,6 +1,5 @@
 package com.no_fate.simbirsoftandroidhomework;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,10 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DateFragment extends Fragment {
 
     public DateFragment() {

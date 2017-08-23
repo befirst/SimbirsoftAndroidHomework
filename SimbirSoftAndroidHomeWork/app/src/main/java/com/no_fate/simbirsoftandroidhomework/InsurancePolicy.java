@@ -1,21 +1,8 @@
 package com.no_fate.simbirsoftandroidhomework;
 
-import android.graphics.Color;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
-
-/**
- * Created by Denis on 16.08.2017.
- */
 
 enum PolicyType{
     CNCInsurance, CMTPL,  PropertyInsurance,  HealthInsurance
