@@ -1,33 +1,10 @@
-Файл InsurancePolicy.java
+TheFifthHomeWork.class
 
-1) Не используемые imports должны быть удалены
+@Override
+public void onPageSelected(int position) {
+    pager.getAdapter().notifyDataSetChanged();
+}
 
-2) PolicyType лучше выносить или в отдельный файл или занусть внутрь InsurancePolicy
-
-3) distanceBetweenBeginningAndDeadlineInDays можно каждый раз вычислять, а не заводить отдельное поле
-
-4) CNCInsurance, CMTPL,  PropertyInsurance,  HealthInsurance - названия в enum лучше писать заглавными буквами по аналогии с константами
-
-
-
-Файл PolicyAdapter.java
-
-1) Не нужно в PolicyAdapter передавать context. context можно получить из любой View
-
-2) bindViewHolder(holder, position);
-
-  После изменения объекта  policy нужно было вызвать у адаптера notifyItemChanged();, а не bindViewHolder.
-
-  В идеале, метод holder.ivCart.setOnClickListener  должен прокидывать событие до поставщика данных с информацией о объекте, который должен изменится.
-
-  В поставщике меняем соответствующий объект Policy и затем говорим адаптеру, чтобы он обновил изменные данные https://developer.android.com/reference/android/support/v7/util/DiffUtil.html
-
-3)  System.getProperty("line.separator") - можно просто константу завести.
-
-4)  Для спряжения слова "день" правильнее использовать https://developer.android.com/guide/topics/resources/string-resource.html#Plurals
-
-5) getProgressColorId(InsurancePolicy policy - policy не используется в  методе
-
-
-
-4+
+Вызов notifyDataSetChanged в onPageSelected прерывает анимацию, такое решение не верно. 
+Необходимо было реализовать вызов метода из активити, обновляющего фрагмент. 
+4
