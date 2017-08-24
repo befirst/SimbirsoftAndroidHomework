@@ -11,10 +11,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateFragment extends Fragment {
+public class DateFragment extends Fragment implements IUpdatable {
+
+    private final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+    private TextView tvDate;
 
     public DateFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void update() {
+        tvDate.setText(format.format(new Date()));
     }
 
     @Override
@@ -23,11 +31,8 @@ public class DateFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_date, container, false);
 
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
-        String myDate = format.format(new Date());
-
-        TextView tvDate = view.findViewById(R.id.tvDate);
-        tvDate.setText(myDate);
+        tvDate = view.findViewById(R.id.tvDate);
+        update();
 
         // Inflate the layout for this fragment
         return view;

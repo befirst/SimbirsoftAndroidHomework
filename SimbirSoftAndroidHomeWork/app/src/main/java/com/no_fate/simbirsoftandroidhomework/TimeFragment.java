@@ -1,6 +1,5 @@
 package com.no_fate.simbirsoftandroidhomework;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,14 +11,18 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+public class TimeFragment extends Fragment implements IUpdatable{
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class TimeFragment extends Fragment {
+    private final SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+    private TextView tvTime;
 
     public TimeFragment() {
+        // Required empty public constructor
+    }
 
+    @Override
+    public void update(){
+        tvTime.setText(format.format(new Date()));
     }
 
     @Override
@@ -28,11 +31,8 @@ public class TimeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_time, container, false);
 
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-        String myDate = format.format(new Date());
-
-        TextView tvTime = view.findViewById(R.id.tvTime);
-        tvTime.setText(myDate);
+        tvTime = view.findViewById(R.id.tvTime);
+        update();
 
         // Inflate the layout for this fragment
         return view;

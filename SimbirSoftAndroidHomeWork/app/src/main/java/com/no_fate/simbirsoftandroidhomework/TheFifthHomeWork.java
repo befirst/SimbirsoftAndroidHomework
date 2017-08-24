@@ -33,25 +33,21 @@ public class TheFifthHomeWork extends FragmentActivity {
         pager.setAdapter(pagerAdapter);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
-                pager.getAdapter().notifyDataSetChanged();
+                IUpdatable fragment = (IUpdatable) fragments.get(position);
+                fragment.update();
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
+            public void onPageScrollStateChanged(int state) { }
         });
     }
 
     public static void start(Context context) {
         Intent starter = new Intent(context, TheFifthHomeWork.class);
-        //starter.putExtra();
         context.startActivity(starter);
     }
 
@@ -75,11 +71,6 @@ public class TheFifthHomeWork extends FragmentActivity {
         @Override
         public int getCount() {
             return fragments.size();
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return POSITION_NONE;
         }
     }
 
