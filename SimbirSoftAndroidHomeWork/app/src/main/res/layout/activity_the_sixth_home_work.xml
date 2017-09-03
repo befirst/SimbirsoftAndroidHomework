@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.no_fate.simbirsoftandroidhomework.TheFourthHomeWork" >
+    tools:context="com.no_fate.simbirsoftandroidhomework.TheSixthHomeWork">
 
     <!-- The Material Design specification recommends that app bars have an elevation of 4 dp. -->
 

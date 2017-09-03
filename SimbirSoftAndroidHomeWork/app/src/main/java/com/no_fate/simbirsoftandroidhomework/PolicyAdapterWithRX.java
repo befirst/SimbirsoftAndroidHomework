@@ -15,21 +15,31 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyViewHolder> {
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
+import io.reactivex.subjects.Subject;
+
+public class PolicyAdapterWithRX extends RecyclerView.Adapter<PolicyAdapterWithRX.PolicyViewHolder> {
     private final static int CODE_ERROR = -1;
 
     private Context parentContext;
     private List<InsurancePolicy> policies;
     private Calendar nowTime;
+    private Subject<SubjectItem> observable;
 
-    public PolicyAdapter(Context context, List<InsurancePolicy> policies) {
+    public PolicyAdapterWithRX(Context context, List<InsurancePolicy> policies) {
         this.parentContext = context;
         this.policies = policies;
         nowTime = Calendar.getInstance(Locale.getDefault());
+        observable = PublishSubject.create();
+        observable.subscribeOn(Schedulers.newThread())
+                .subscribe(item -> handleBindFromSubjectItem(item));
     }
 
     public static class PolicyViewHolder extends RecyclerView.ViewHolder{
@@ -56,12 +66,24 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
     @Override
     public PolicyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_cardview, parent, false);
-        PolicyViewHolder policyViewHolder = new PolicyViewHolder(view);
-        return policyViewHolder;
+        return new PolicyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final PolicyViewHolder holder, final int position) {
+        observable.onNext(new SubjectItem(holder, position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return policies.size();
+    }
+
+    private void handleBindFromSubjectItem(SubjectItem item){
+        handleBind(item.getHolder(), item.getPosition());
+    }
+
+    private void handleBind(PolicyViewHolder holder, int position){
         final int BUY_NEW_ACCESS = 30;
 
         final InsurancePolicy policy = policies.get(position);
@@ -96,11 +118,6 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
         } else{
             holder.ivCart.setVisibility(View.INVISIBLE);
         }
-    }
-
-    @Override
-    public int getItemCount() {
-        return policies.size();
     }
 
     private int getIconResourceId(InsurancePolicy policy) {
@@ -210,5 +227,24 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyAdapter.PolicyView
         } else{
             return GOOD_COLOR_ID;
         }
+    }
+
+    class SubjectItem{
+        private PolicyViewHolder holder;
+        private int position;
+
+        public SubjectItem(PolicyViewHolder holder, int position) {
+            this.holder = holder;
+            this.position = position;
+        }
+
+        public PolicyViewHolder getHolder() {
+            return holder;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
     }
 }

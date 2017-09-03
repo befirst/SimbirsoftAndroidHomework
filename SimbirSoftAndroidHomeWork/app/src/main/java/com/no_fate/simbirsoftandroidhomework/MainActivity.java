@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bTheSixthHWActivityOpen:
-                tAdditionalInfo.setText(res.getString(R.string.empty_activity, "6"));
+                TheSixthHomeWork.start(MainActivity.this);
                 break;
             case R.id.bTheFifthHWActivityOpen:
                 TheFifthHomeWork.start(MainActivity.this);

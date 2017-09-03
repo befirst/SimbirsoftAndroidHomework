@@ -59,6 +59,8 @@
 
     <string name="titleSearch">Поиск</string>
     <string name="titleNotification">Уведомление</string>
+    <string name="titleSorting">Упорядочить</string>
+    <string name="titleFiltering">Фильтровать</string>
 
     <string name="time_filler">00:00:00</string>
     <string name="date_filler">00.00.0000</string>

@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class TheFourthHomeWork extends AppCompatActivity {
+public class TheSixthHomeWork extends AppCompatActivity {
 
     private List<InsurancePolicy> policies;
 
     public static void start(Context context) {
-        Intent starter = new Intent(context, TheFourthHomeWork.class);
+        Intent starter = new Intent(context, TheSixthHomeWork.class);
         context.startActivity(starter);
     }
 
@@ -35,7 +35,7 @@ public class TheFourthHomeWork extends AppCompatActivity {
         setTheme(R.style.Mint);
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_the_fourth_home_work);
+        setContentView(R.layout.activity_the_sixth_home_work);
 
         initializePolicies();
 
@@ -43,7 +43,7 @@ public class TheFourthHomeWork extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rvPolicy.setLayoutManager(linearLayoutManager);
 
-        PolicyAdapter policyAdapter = new PolicyAdapter(this, policies);
+        PolicyAdapterWithRX policyAdapter = new PolicyAdapterWithRX(this, policies);
         rvPolicy.setAdapter(policyAdapter);
 
         Toolbar customToolBar = (Toolbar) findViewById(R.id.toolBarCustom);

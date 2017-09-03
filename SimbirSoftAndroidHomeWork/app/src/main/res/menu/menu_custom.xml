@@ -2,17 +2,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/actionSearch"
-        android:title="@string/titleSearch"
-        android:icon="@drawable/mobile_portrait_my_policies"
-        app:showAsAction="ifRoom"
+        android:id="@+id/actionFiltering"
+        android:title="@string/titleFiltering"
+        android:icon="@drawable/filtering64"
+        app:showAsAction="ifRoom|withText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <item android:id="@+id/iconNotification"
-        android:title="@string/titleNotification"
-        android:icon="@drawable/icon_notification"
-        app:showAsAction="ifRoom"
+    <item
+        android:id="@+id/actionSorting"
+        android:title="@string/titleSorting"
+        android:icon="@drawable/sorting64"
+        app:showAsAction="ifRoom|withText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <item
+        android:id="@+id/actionSearch"
+        android:title="@string/titleSearch"
+        android:icon="@drawable/mobile_portrait_my_policies"
+        app:showAsAction="ifRoom|withText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <item
+        android:id="@+id/iconNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/icon_notification"
+        android:title="@string/titleNotification"
+        app:showAsAction="ifRoom|withText" />
 </menu>
